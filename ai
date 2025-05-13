@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RHIVE Chatbot</title>
+  <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+  <style>
+    :root {
+      --chat--color-primary: #ec058e;
+      --chat--color-dark: #000000;
+      --chat--color-white: #ffffff;
+      --chat--bubble--user: #ffffff;
+      --chat--bubble--assistant: #000000;
+      --chat--font-family: 'Arial', sans-serif;
+      --chat--color-light: #ec058e; /* Background */
+    }
+
+    body {
+      background-color: #ec058e;
+    }
+
+    /* Hide the default header */
+    .n8n-chat-header__wrapper {
+      display: none !important;
+    }
+
+    /* Chat container background */
+    .n8n-chat-widget {
+      background-color: #ec058e !important;
+    }
+
+    /* Bot name styling */
+    .n8n-chat-message__from {
+      font-size: 1.4rem;
+      color: white;
+    }
+
+    /* Message bubble styles */
+    .n8n-chat-message--assistant .n8n-chat-message__bubble {
+      background-color: black !important;
+      color: white !important;
+      border-radius: 20px;
+    }
+
+    .n8n-chat-message--user .n8n-chat-message__bubble {
+      background-color: white !important;
+      color: black !important;
+      border-radius: 20px;
+    }
+
+    /* Input box styling */
+    .n8n-chat-widget input {
+      background-color: white !important;
+      color: black !important;
+      border: none !important;
+    }
+
+    .n8n-chat-widget input::placeholder {
+      color: black !important;
+      opacity: 1;
+    }
+
+    /* Send button styling */
+    .n8n-chat-widget button {
+      background-color: #ec058e !important;
+      color: white !important;
+      border: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="n8n-chat"></div>
+
+  <script type="module">
+    import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+
+    createChat({
+      webhookUrl: 'https://rhiveconstruction.app.n8n.cloud/webhook/01dc2536-f3c5-4c7d-951e-e70ec1ec6380/chat',
+      webhookConfig: {
+        method: 'POST',
+        headers: {}
+      },
+      target: '#n8n-chat',
+      mode: 'window',
+      chatInputKey: 'chatInput',
+      chatSessionKey: 'sessionId',
+      metadata: {},
+      showWelcomeScreen: false,
+      defaultLanguage: 'en',
+      initialMessages: [
+        'Hi there!',
+        'My name is Hunni. How can I assist you today?'
+      ],
+      i18n: {
+        en: {
+          title: '',
+          subtitle: '',
+          footer: '',
+          getStarted: 'New Conversation',
+          inputPlaceholder: 'Type Here...',
+        },
+      },
+    });
+  </script>
+</body>
+</html>
